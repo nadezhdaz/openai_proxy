@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: openai-proxy
+    env: node
+    plan: free
+    # Deploy in the EU region closest to the Netherlands.
+    region: frankfurt
+    # Use the default branch of your Git repository
+    # (omit branch if you want all branches to be automatically deployed).
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      # Prompt for your OpenAI API key during the initial deploy.  Do not hard‑code
+      # secrets in this file.  Render will ask you for the value when you first
+      # launch the service.
+      - key: OPENAI_API_KEY
+        sync: false
