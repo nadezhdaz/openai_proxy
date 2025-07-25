@@ -9,12 +9,12 @@ Secure proxy backend to safely use OpenAI API in mobile or web apps.
 
 ## 🚀 Deploy to Render
 
-[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/nadezhdaz/openai-proxy)
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/nadezhdaz/openai_proxy)
 
 ## 🔧 Local Development
 
 ```bash
-git clone https://github.com/nadezhdaz/openai-proxy
+git clone https://github.com/nadezhdaz/openai_proxy
 cd openai-proxy
 npm install
 cp .env.example .env
