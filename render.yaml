@@ -7,8 +7,8 @@ services:
     region: frankfurt
     # Use the default branch of your Git repository
     # (omit branch if you want all branches to be automatically deployed).
-    buildCommand: npm install
-    startCommand: node server.js
+    buildCommand: npm ci
+    startCommand: npm start
     envVars:
       # Prompt for your OpenAI API key during the initial deploy.  Do not hard‑code
       # secrets in this file.  Render will ask you for the value when you first
