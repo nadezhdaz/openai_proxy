@@ -1,39 +1,24 @@
-# OpenAI Proxy Server
+# WhatToEat proxy
 
-Secure proxy backend to safely use OpenAI API in mobile or web apps.
+Node 22+ server for the native WhatToEat app. The OpenAI key stays in Render's environment.
 
-## 🛡️ Features
-- Hides your OpenAI API key
-- Simple Express server with CORS support
-- Ready to deploy on [Render](https://render.com)
+## API
 
-## 🚀 Deploy to Render
+- GET /health
+- POST /api/v1/recommendations — manual text and older versioned clients
+- POST /api/v2/menu-pages/analyze — one normalized JPEG page, up to 3 MiB and 2560 px
+- POST /api/v2/recommendations — structured menu and dietary profile, verified dish IDs
 
-[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/nadezhdaz/openai_proxy)
+The former /api/ask-gpt and /api/analyze-image routes are intentionally retired. Run npm ci and npm test to verify both versioned contracts. Offline tests use synthetic JPEGs and mocked model replies; user photographs are not published.
 
-## 🔧 Local Development
+## Deployment
 
-```bash
-git clone https://github.com/nadezhdaz/openai_proxy
-cd openai-proxy
-npm install
-cp .env.example .env
-# Edit .env to include your OpenAI key
-npm start
-```
+The existing Render service deploys main with npm install and node server.js. Keep OPENAI_API_KEY in its existing environment. The default model is gpt-4o-mini-2024-07-18, configurable with OPENAI_MODEL. No paid resources are added by this update.
 
-## 📦 Endpoints
+Defaults: 60 API calls/minute/IP, 200 generations/day, conservative 2,000,000 tokens/day. Budget reservations count image-reading calls as well as ranking. An explicit REQUESTS_PER_MINUTE=6 environment override should be raised to 60 for multipage use.
 
-- `POST /api/ask-gpt`
-```json
-{
-  "prompt": "Your question"
-}
-```
+The budget file defaults to ./data/budget.json. On the current free Render instance, local storage is ephemeral: reservations reset after a new deployment or instance replacement. Provider-level spend limits are required; persistent budgeting requires a separately approved storage setup. Keep one server instance until shared budgeting/cache is implemented.
 
-Returns:
-```json
-{
-  "result": "GPT reply"
-}
-```
+Responses and request hashes are cached in memory for ten minutes. Images are never stored on disk or logged. Existing text consent does not authorize photo transmission; the iOS app requests separate consent.
+
+For live photo evaluation, put authorized JPEGs and matching reference JSONs in a local directory and run npm run evaluate -- --endpoint https://openai-proxy-3gin.onrender.com --fixtures YOUR_DIRECTORY. The gate transmits those photographs to the service. Offline tests do not certify live model accuracy or dietary safety.

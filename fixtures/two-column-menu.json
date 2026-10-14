@@ -1,0 +1,13 @@
+{
+  "status": "readable",
+  "issues": [],
+  "dishes": [
+    { "name": "Тонкацу карри", "description": "свинина, рис, соус карри с овощами", "price": "790", "compositionStatus": "listed" },
+    { "name": "Чикен-кацу карри", "description": "курица, рис, соус карри с овощами", "price": "890", "compositionStatus": "listed" },
+    { "name": "Тонкацу", "description": "свинина, рис, микс капусты", "price": "750", "compositionStatus": "listed" },
+    { "name": "Чикен-кацу", "description": "курица, рис, микс капусты", "price": "850", "compositionStatus": "listed" },
+    { "name": "Мезмен с уткой", "description": "лапша, копченое утиное филе, овощи, соус чачу", "price": "990", "compositionStatus": "listed" },
+    { "name": "Удон с курицей", "description": "лапша удон, курица, грибы, соус чачу", "price": "750", "compositionStatus": "listed" },
+    { "name": "Мезмен с лососем", "description": "лапша, лосось, страчателла, желток, красная икра, лук, кунжут", "price": "1090", "compositionStatus": "listed" }
+  ]
+}
